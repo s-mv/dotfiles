@@ -11,7 +11,7 @@ set number
 source ${HOME}/.config/nvim/plugins.vim
 source ${HOME}/.config/nvim/keymap.vim
 
-" ayu theme
+" ayu
 set termguicolors
-let ayucolor="mirage"
+let ayucolor="dark"
 colorscheme ayu
