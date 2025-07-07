@@ -4,10 +4,11 @@ vim.api.nvim_create_autocmd({ "BufReadPre", "BufNewFile" }, {
   once = true,
   callback = function()
     local server_configs = vim.iter(vim.api.nvim_get_runtime_file("lua/lsp/*.lua", true))
-      :map(function(file)
-        return vim.fn.fnamemodify(file, ":t:r")
-      end)
-      :totable()
+        :map(function(file)
+          return vim.fn.fnamemodify(file, ":t:r")
+        end)
+        :totable()
+
     vim.lsp.enable(server_configs)
   end,
 })
@@ -53,4 +54,3 @@ vim.lsp._enable_servers = function(config_names)
     end
   end
 end
-

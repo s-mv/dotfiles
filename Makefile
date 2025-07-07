@@ -1,29 +1,26 @@
+CONFIGS = i3 polybar nvim alacritty picom
+FILES = starship.toml
+
 smv:
-	@if [ -d ~/.config/i3 ]; then \
-		mv ~/.config/i3 ~/.config/i3.bak; \
-	fi
-	@ln -sfn $(PWD)/i3 ~/.config/i3
+	@for name in $(CONFIGS); do \
+		if [ -d $$HOME/.config/$$name ]; then \
+			mv $$HOME/.config/$$name $$HOME/.config/$$name.bak; \
+		fi; \
+		ln -sfn $(PWD)/$$name $$HOME/.config/$$name; \
+	done
 
-	@if [ -d ~/.config/nvim ]; then \
-		mv ~/.config/nvim ~/.config/nvim.bak; \
-	fi
-	@ln -sfn $(PWD)/nvim ~/.config/nvim
-
-	@if [ -d ~/.config/starship.toml ]; then \
-		mv ~/.config/starship.toml ~/.config/starship.toml.bak; \
-	fi
-	@ln -sfn $(PWD)/starship.toml ~/.config/starship.toml
-
-	@if [ -d ~/.config/alacritty ]; then \
-		mv ~/.config/alacritty ~/.config/alacritty.bak; \
-	fi
-	@ln -sfn $(PWD)/alacritty ~/.config/alacritty
+	@for file in $(FILES); do \
+		if [ -e $$HOME/.config/$$file ]; then \
+			mv $$HOME/.config/$$file $$HOME/.config/$$file.bak; \
+		fi; \
+		ln -sfn $(PWD)/$$file $$HOME/.config/$$file; \
+	done
 
 nobak:
-	@read -p "This will delete all ~/.config/*.bak directories. Proceed? [y/N] " ans; \
+	@read -p "This will delete all ~/.config/*.bak files and dirs. Proceed? [y/N] " ans; \
 	if [ "$$ans" = "Y" ] || [ "$$ans" = "y" ]; then \
 		echo "Removing backups..."; \
-		rm -rf ~/.config/*.bak; \
+		rm -rf $$HOME/.config/*.bak; \
 	else \
 		echo "Aborted."; \
 	fi
