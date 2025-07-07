@@ -196,5 +196,7 @@ bindsym Mod1+Shift+Tab focus next
 bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
+bindsym $mod+Shift+Escape exec --no-startup-id ~/.config/i3/powermenu.sh
+
 exec --no-startup-id xset -b
 
