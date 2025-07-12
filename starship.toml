@@ -1,4 +1,87 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
-add_newline = false
+palette = "env"
+
+format = """
+[](colour1)\
+$directory\
+$git_branch$git_status\
+$rust$nodejs$python\
+$conda$pixi$docker_context\
+$username\
+[](fg:colour5)\
+$line_break """
+
+[directory]
+style = "fg:colour0 bg:colour1"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = ""
+
+[git_branch]
+format = """[](fg:colour1 bg:colour2)[ $branch ]($style)"""
+style = "fg:colour0 bg:colour2"
+
+[git_status]
+format = "[ $all_status$ahead_behind ]($style)"
+style = "fg:colour0 bg:colour2"
+
+[rust]
+format = """[](fg:colour2 bg:colour3)[ rust $version ]($style)"""
+style = "fg:colour0 bg:colour3"
+symbol = ""
+
+[nodejs]
+format = "[ node $version ]($style)"
+style = "fg:colour0 bg:colour3"
+symbol = ""
+
+[python]
+format = "[ py $version ]($style)"
+style = "fg:colour0 bg:colour3"
+symbol = ""
+
+[username]
+disabled = false
+show_always = true
+format = '[ $user ]($style)'
+style_user = "fg:colour4 bg:colour5"
+
+[line_break]
+disabled = true
+
+[hostname]
+disabled = true
+
+[os]
+disabled = true
+
+[c]
+disabled = true
+
+[cpp]
+disabled = true
+
+[php]
+disabled = true
+
+[golang]
+disabled = true
+
+[java]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[haskell]
+disabled = true
+
+[palettes.env]
+colour0 = "#1f2430"
+colour1 = "#69d0f6"
+colour2 = "#58bbe6"
+colour3 = "#48a8d6"
+colour4 = "#CCCAC2"
+colour5 = "#1F2937"
 

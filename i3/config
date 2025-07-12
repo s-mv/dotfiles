@@ -30,6 +30,7 @@ exec --no-startup-id xset -b
 exec --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.jpeg
 
 # polybar
+exec_always killall -q polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 ### <<< smv's execs' end
@@ -215,6 +216,28 @@ bindsym Print exec --no-startup-id flameshot gui
 bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
+# firefox
+bindsym $mod+Ctrl+f exec firefox
+
 # easier logout
 bindsym $mod+Shift+Escape exec --no-startup-id ~/.config/i3/powermenu.sh
+
+# better titlebars
+for_window [class=".*"] title_format "<span size='10240' color='#cdd6f4'>%title</span>"
+
+gaps inner 0
+gaps outer 0
+smart_borders no_gaps
+
+for_window [class=".*"] border pixel 2
+for_window [class="^.*"] border pixel 1
+
+# class                 border  bground text    indicator child_border
+client.focused          #E6E6FA #33415E #FFFFFF #2E9EF4   #FFCC66
+client.focused_inactive #1F2430 #1F2430 #FFFFFF #484E50   #1F2430
+client.unfocused        #1F2430 #1F2430 #888888 #292D2E   #1F2430
+client.urgent           #2F343A #FF3333 #FFFFFF #900000   #900000
+client.placeholder      #1F2430 #1F2430 #FFFFFF #000000   #0C0C0C
+
+client.background       #1F2430
 
