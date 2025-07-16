@@ -1,12 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-choice=$(echo -e "Shutdown\nReboot\nSuspend\nLock\nLogout" | dmenu -i -p "Power")
+options="Shutdown\nReboot\nSuspend\nLock\nLogout"
 
-case "$choice" in
-  Shutdown) systemctl poweroff ;;
-  Reboot) systemctl reboot ;;
-  Suspend) systemctl suspend ;;
-  Lock) i3lock ;;
-  Logout) i3-msg exit ;;
+chosen=$(echo -e "$options" | rofi -dmenu -i -p "Power Menu")
+
+case "$chosen" in
+  *Shutdown) systemctl poweroff ;;
+  *Reboot) systemctl reboot ;;
+  *Suspend) systemctl suspend ;;
+  *Lock) i3lock ;;
+  *Logout) i3-msg exit ;;
+  *) exit 1 ;;
 esac
 

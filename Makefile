@@ -1,5 +1,5 @@
-CONFIGS = i3 polybar nvim alacritty picom
-FILES = starship.toml libinput-gestures.conf
+CONFIGS = i3 polybar nvim alacritty picom rofi
+FILES = libinput-gestures.conf
 
 smv:
 	@for name in $(CONFIGS); do \
