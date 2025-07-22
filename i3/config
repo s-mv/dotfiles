@@ -212,7 +212,7 @@ bindsym XF86MonBrightnessUp exec brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 # firefox
-bindsym $mod+Ctrl+f exec firefox
+bindsym $mod+Shift+f exec firefox
 
 # easier logout
 bindsym $mod+Escape exec --no-startup-id ~/.config/i3/powermenu.sh

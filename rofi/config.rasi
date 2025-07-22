@@ -6,6 +6,7 @@
    lightcyan:        #B48EAD;
    green:            #bae67e;
    red:              #ff3333;
+   orange:           #ff4400;
 
    dark1:            #0a0e14;
    dark2:            #1f2430;
@@ -19,7 +20,7 @@
    text-color:       @dark3;
    dark-text-color:  @dark4;
    main-color:       @blue;
-   highlight:        @light1;
+   highlight:        @orange;
    urgent-color:     @red;
    selected-color:   @lightcyan;
 }
