@@ -11,7 +11,9 @@ return {
 				cpp = { "clang_format" },
 				rust = { "rustfmt" },
 				lua = { "stylua" },
+				ocaml = { "ocamlformat" },
 			},
 		})
 	end,
 }
+

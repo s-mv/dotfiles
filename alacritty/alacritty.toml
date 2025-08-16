@@ -5,10 +5,9 @@ general.import = [
 [window]
 decorations = "full"
 startup_mode = "Windowed"
-# opacity = 0.991
 
 [font]
-size = 10.0
+size = 9.0
 
 [font.normal]
 family = "FiraCode Nerd Font Mono"
