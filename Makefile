@@ -1,5 +1,5 @@
 CONFIGS = i3 polybar nvim alacritty picom rofi
-FILES = libinput-gestures.conf
+FILES = 
 
 smv:
 	@for name in $(CONFIGS); do \
