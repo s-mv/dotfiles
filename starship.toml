@@ -1,0 +1,21 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+add_newline = false
+command_timeout = 700
+
+palette = "shades"
+
+format = "$directory$character"
+right_format = "$git_branch"
+
+[character]
+success_symbol = "[❯](green)"
+
+[git_branch]
+symbol = " "
+format = "on [$symbol$branch ](lavender)"
+
+[palettes.shades]
+green = "#43fa34"
+lavender = "#b4befe"
+

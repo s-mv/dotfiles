@@ -1,5 +1,5 @@
 CONFIGS = i3 polybar nvim alacritty picom rofi
-FILES = 
+FILES = starship.toml
 
 smv:
 	@for name in $(CONFIGS); do \

@@ -68,7 +68,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec --no-startup-id  ~/.config/i3/alactritty.sh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -201,8 +201,8 @@ bindsym $mod+r mode "resize"
 ### smv's edits (well additions more than edits I guess) ###
 
 # shift focus using alt-Tab
-bindsym Mod1+Tab focus prev
-bindsym Mod1+Shift+Tab focus next
+bindsym Mod1+Tab focus right
+bindsym Mod1+Shift+Tab focus left
 
 # screenshots
 bindsym Print exec --no-startup-id flameshot gui
@@ -213,6 +213,8 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 
 # firefox
 bindsym $mod+Shift+f exec firefox
+# file manager
+bindsym $mod+Shift+e exec pcmanfm
 
 # easier logout
 bindsym $mod+Escape exec --no-startup-id ~/.config/i3/powermenu.sh

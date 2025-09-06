@@ -7,6 +7,6 @@ return {
 		"--fallback-style=none",
 		"--function-arg-placeholders=false",
 	},
-	filetypes = { "c", "cpp", "cc" },
+	filetypes = { "c", "cpp", "cc", "h", "hpp" },
 	root_markers = { ".clangd", ".git", "compile_commands.json" },
 }
