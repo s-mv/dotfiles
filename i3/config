@@ -36,6 +36,9 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 # rofi
 bindsym $mod+d exec --no-startup-id rofi -show drun -matching fuzzy
 
+# libinput
+exec_always --no-startup-id libinput-gestures-setup start
+
 ### <<< smv's execs' end
 
 # Start XDG autostart .desktop files using dex. See also
@@ -112,7 +115,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle, resize set 820 820, move position center
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -236,4 +239,6 @@ client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 
 client.background       #F8F8F2
+
+for_window [floating] resize set 724 724, move position center
 

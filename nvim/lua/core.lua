@@ -7,6 +7,12 @@ vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
+vim.filetype.add({
+	extension = {
+		svelte = "svelte",
+	},
+})
+
 vim.keymap.set("n", "<C-f>", function()
 	require("conform").format({
 		async = false,
@@ -17,6 +23,9 @@ vim.keymap.set("n", "<C-f>", function()
 		vim.api.nvim_buf_set_lines(0, -1, -1, false, { "" })
 	end
 end, { desc = "[F]ormat buffer" })
+
+vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
 
 vim.opt.number = true
 vim.opt.relativenumber = true
