@@ -1,0 +1,184 @@
+### --- sway config ported from i3 --- ###
+set $mod Mod4
+
+font pango:UbuntuMono Nerd Font 9
+
+# === smv’s startup ===
+
+exec_always ~/.config/sway/randomwall.sh
+
+# polybar replaced by waybar
+exec_always killall -q waybar
+exec_always --no-startup-id waybar &
+
+# rofi replaced by wofi
+bindsym $mod+d exec wofi --show drun --matching fuzzy
+
+# screen lock swaylock + swayidle
+exec swayidle -w \
+  timeout 300 'swaylock -f -c 000000' \
+  before-sleep 'swaylock -f -c 000000'
+
+# network and audio applets
+exec nm-applet
+exec blueman-applet
+exec mako
+
+# volume controls (using pipewire)
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+ 
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+floating_modifier $mod
+tiling_drag titlebar
+
+# terminal
+bindsym $mod+Return exec ~/.config/sway/alacritty.sh
+
+# kill
+bindsym $mod+Shift+q kill
+
+# focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split modes
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# fullscreen
+bindsym $mod+f fullscreen toggle
+
+# layouts
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle float
+bindsym $mod+Shift+space floating toggle, resize set 820 820, move position center
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+a focus parent
+
+# workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+# reload/restart
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+input "type:touchpad" {
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+    scroll_method two_finger
+    dwt enabled
+}
+
+# resize mode (same as i3)
+mode "resize" {
+    bindsym j resize shrink width 10px
+    bindsym k resize grow height 10px
+    bindsym l resize shrink height 10px
+    bindsym semicolon resize grow width 10px
+
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# alt-tab focus
+bindsym Mod1+Tab focus right
+bindsym Mod1+Shift+Tab focus left
+
+# screenshots: flameshot → grim+slurp
+bindsym Print exec grim -g "$(slurp)" ~/Pictures/screenshot-$(date +'%F-%T').png
+
+# brightness
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
+# firefox, file manager, logout
+bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+e exec thunar
+bindsym $mod+Escape exec ~/.config/sway/powermenu.sh
+
+# gaps
+gaps inner 4
+smart_gaps on
+smart_borders no_gaps
+
+# border rules
+for_window [floating] border pixel 3
+for_window [class=".*"] border pixel 3
+
+# focus policy
+focus_follows_mouse yes
+
+# colors
+client.focused          #BD93F9 #44475A #F8F8F2 #BD93F9 #BD93F9
+client.focused_inactive #6272A4 #44475A #F8F8F2 #6272A4 #6272A4
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36 #282A36
+client.urgent           #FF5555 #FF5555 #F8F8F2 #FF5555 #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36 #282A36
+client.background       #1E1F29
+

@@ -1,0 +1,69 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 26,
+
+  "modules-left": ["sway/workspaces", "sway/window"],
+  "modules-right": ["custom/filesystem", "pulseaudio", "keyboard-state", "memory", "cpu", "network", "battery", "clock"],
+
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "format": "{name}",
+    "all-outputs": true
+  },
+
+  "sway/window": {
+    "format": "{title}",
+    "max-length": 60
+  },
+
+  "custom/filesystem": {
+    "interval": 25,
+    "exec": "df -h / | awk 'NR==2 {print $5}'",
+    "return-type": "plain",
+    "format": " {}"
+  },
+
+  "pulseaudio": {
+    "format": " {volume}%",
+    "format-muted": " muted",
+    "scroll-step": 5
+  },
+
+  "keyboard-state": {
+    "numlock": true,
+    "capslock": true,
+    "format": "{name} {icon}"
+  },
+
+  "memory": {
+    "interval": 2,
+    "format": " {percentage}%"
+  },
+
+  "cpu": {
+    "interval": 2,
+    "format": " {usage}%"
+  },
+
+  "network": {
+    "interval": 5,
+    "format-wifi": " {essid} {ipaddr}",
+    "format-ethernet": " {ifname} {ipaddr}",
+    "format-disconnected": " disconnected"
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-full": " full",
+    "format-icons": ["", "", "", "", ""]
+  },
+
+  "clock": {
+    "interval": 60,
+    "format": " {:%H:%M}",
+    "tooltip-format": "{:%Y-%m-%d %H:%M:%S}"
+  }
+}
+

@@ -5,6 +5,7 @@ general.import = [
 [window]
 decorations = "full"
 startup_mode = "Windowed"
+opacity = 0.9
 
 [font]
 size = 9

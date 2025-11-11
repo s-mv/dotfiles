@@ -163,6 +163,9 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -222,8 +225,10 @@ bindsym $mod+Shift+e exec pcmanfm
 # easier logout
 bindsym $mod+Escape exec --no-startup-id ~/.config/i3/powermenu.sh
 
-smart_gaps off
+smart_gaps on
 smart_borders no_gaps
+
+gaps inner 4
 
 for_window [floating] border pixel 3
 for_window [class=".*"] border pixel 0
@@ -232,13 +237,13 @@ for_window [class="^.*"] border pixel 3
 focus_follows_mouse yes
 
 # class                 border  bground text    indicator child_border
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.focused          #BD93F9 #44475A #F8F8F2 #BD93F9 #BD93F9
+client.focused_inactive #6272A4 #44475A #F8F8F2 #6272A4 #6272A4
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36 #282A36
+client.urgent           #FF5555 #FF5555 #F8F8F2 #FF5555 #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36 #282A36
 
-client.background       #F8F8F2
+client.background       #1E1F29
 
 for_window [floating] resize set 724 724, move position center
 

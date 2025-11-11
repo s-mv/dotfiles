@@ -2,5 +2,5 @@
 
 DIR="$HOME/.config/wallpapers"
 WALL=$(ls "$DIR"/wallpaper*.jpeg | shuf -n 1)
-feh --bg-scale "$WALL"
+swaybg -i "$WALL" -m fill &
 

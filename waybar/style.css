@@ -1,0 +1,48 @@
+@define-color background #282A2E;
+@define-color background-alt #373B41;
+@define-color foreground #C5C8C6;
+@define-color primary #F0C674;
+@define-color secondary #8ABEB7;
+@define-color alert #A54242;
+@define-color disabled #707880;
+
+* {
+  font-family: monospace;
+  font-size: 12pt;
+  color: @foreground;
+}
+
+window#waybar {
+  background: @background;
+  border: none;
+  padding: 0;
+}
+
+#workspaces button {
+  padding: 0 6px;
+  border: none;
+  color: @disabled;
+}
+
+#workspaces button.active {
+  color: @foreground;
+  border-bottom: 2px solid @primary;
+}
+
+#workspaces button.urgent {
+  background: @alert;
+  color: @background;
+}
+
+#battery.warning {
+  color: @alert;
+}
+
+#clock, #cpu, #memory, #pulseaudio, #network, #battery, #filesystem, #keyboard-state {
+  padding: 0 8px;
+}
+
+#pulseaudio.muted {
+  color: @disabled;
+}
+
