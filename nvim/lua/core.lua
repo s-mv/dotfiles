@@ -7,6 +7,18 @@ vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
+vim.keymap.set("n", "<Tab>", ">>", { noremap = true, silent = true })
+vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true })
+
+vim.keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true })
+vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<A-Left>", ":tabprevious<CR>", { desc = "Tab: Left" })
+vim.keymap.set("n", "<A-Right>", ":tabnext<CR>", { desc = "Tab: Right" })
+
+vim.keymap.set("n", "<A-n>", ":tabnew<CR>", { desc = "Tab: New" })
+vim.keymap.set("n", "<A-m>", ":tabclose<CR>", { desc = "Tab: Close" })
+
 vim.filetype.add({
 	extension = {
 		svelte = "svelte",

@@ -1,18 +1,18 @@
-local colors = {
-	fg = "#BFBDB6",
-	tag = "#39BAE6",
-	func = "#FFB454",
-	entity = "#59C2FF",
-	string = "#AAD94C",
-	regexp = "#95E6CB",
-	markup = "#F07178",
-	keyword = "#FF8F40",
-	special = "#E6B673",
-	comment = "#ACB6BF",
-	constant = "#D2A6FF",
-	operator = "#F29668",
-	accent = "#E6B450",
-	error = "#D95757",
+local c = {
+	fg = "#c0caf5", -- main foreground
+	comment = "#565f89", -- subtle gray-blue
+	keyword = "#9d7cd8", -- purple
+	func = "#7aa2f7", -- bright blue
+	string = "#9ece6a", -- green
+	constant = "#bb9af7", -- lavender
+	operator = "#89ddff", -- cyan-blue
+	tag = "#7dcfff", -- sky blue
+	special = "#e0af68", -- amber
+	markup = "#f7768e", -- pink/red (used for markup or literals)
+	error = "#f7768e", -- same as markup for emphasis
+	accent = "#7aa2f7", -- accent for highlights
+	entity = "#2ac3de", -- teal for types
+	regexp = "#b4f9f8", -- mint cyan
 }
 
 local function hi(group, opts)
@@ -22,27 +22,38 @@ local function hi(group, opts)
 	vim.api.nvim_set_hl(0, group, opts)
 end
 
-hi("Normal", { fg = colors.fg })
-hi("NormalNC", { fg = colors.fg })
-hi("SignColumn", { fg = colors.comment })
-hi("LineNr", { fg = "#6C7380" })
-hi("CursorLineNr", { fg = colors.accent, bold = true })
-hi("CursorLine", { bg = "NONE" })
-hi("VertSplit", { fg = "NONE" })
-hi("EndOfBuffer", { fg = "NONE" })
-hi("Visual", { bg = "#475266" }) -- keep subtle selection tint
+-- Core
+hi("Normal", { fg = c.fg })
+hi("NormalNC", { fg = c.fg })
+hi("CursorLineNr", { fg = c.accent, bold = true })
+hi("Visual", { bg = "#2A2E45" })
+hi("LineNr", { fg = "#3B4261" })
+hi("CursorLine", { bg = "#23273E" })
 
-hi("Comment", { fg = colors.comment, italic = true })
-hi("Keyword", { fg = colors.keyword })
-hi("Function", { fg = colors.func })
-hi("String", { fg = colors.string })
-hi("Constant", { fg = colors.constant })
-hi("Type", { fg = colors.entity })
-hi("Operator", { fg = colors.operator })
-hi("Error", { fg = colors.error })
-hi("Todo", { fg = colors.special, bold = true })
+-- Syntax
+hi("Comment", { fg = c.comment, italic = true })
+hi("Keyword", { fg = c.keyword, bold = true })
+hi("Function", { fg = c.func })
+hi("String", { fg = c.string })
+hi("Constant", { fg = c.constant })
+hi("Type", { fg = c.type })
+hi("Operator", { fg = c.operator })
+hi("Error", { fg = c.error })
+hi("Todo", { fg = c.special, bold = true })
+hi("Identifier", { fg = c.fg })
 
-hi("GitSignsAdd", { fg = "#7FD962" })
-hi("GitSignsChange", { fg = "#73B8FF" })
-hi("GitSignsDelete", { fg = "#F26D78" })
+-- UI
+hi("VertSplit", { fg = "#2E3440" })
+hi("StatusLine", { fg = c.fg })
+hi("StatusLineNC", { fg = c.comment })
+hi("Pmenu", { fg = c.fg, bg = "#1E2030" })
+hi("PmenuSel", { fg = "#1E2030", bg = c.keyword, bold = true })
+hi("NormalFloat", { bg = "#1E2030" })
+hi("FloatBorder", { fg = c.comment })
+
+-- Tabs
+hi("TabLineFill", { bg = "NONE", fg = "#3B4261" })
+hi("TabLine", { bg = "NONE", fg = "#565F89" })
+hi("TabLineSel", { bg = "#2F334D", fg = c.keyword, bold = true })
+hi("TabLineSeparator", { fg = "#3B4261" })
 

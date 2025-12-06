@@ -1,29 +1,35 @@
+return {}
+--[[
 return {
-	"ibhagwan/fzf-lua",
-	cmd = "FzfLua",
-	keys = function()
-		local fzf = require("fzf-lua")
-		return {
-			{ "<C-b>", fzf.files },
-			{ "<leader>g", fzf.git_files },
-			-- { "<C-S-b>", fzf.buffers },
-			{ "<C-p>", fzf.live_grep },
-			{ "<leader>e", fzf.diagnostics_document },
-			{ "<leader>r", fzf.lsp_references },
-			{ "<leader>df", fzf.lsp_definitions },
-		}
-	end,
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
+	event = { "BufReadPost", "BufNewFile" },
 	opts = {
-		winopts = {
-			preview = { scrollbar = false },
-		},
-		fzf_opts = {
-			["--layout"] = "reverse-list",
+		highlight = { enable = true },
+		indent = { enable = true },
+		ensure_installed = {
+			"lua",
+			"vim",
+			"vimdoc",
+			"markdown",
+			"markdown_inline",
+			"javascript",
+			"typescript",
+			"tsx",
+			"json",
+			"html",
+			"css",
+			"python",
+			"bash",
+			"c",
+			"cpp",
+			"ocaml",
+			"rust",
 		},
 	},
-	init = function()
-		local fzf_ui = require("fzf-lua.providers.ui_select")
-		vim.ui.select = fzf_ui.ui_select
+	config = function(_, opts)
+		require("nvim-treesitter.configs").setup(opts)
 	end,
 }
+]]
 

@@ -5,8 +5,8 @@ return {
 		local fzf = require("fzf-lua")
 		return {
 			{ "<C-b>", fzf.files },
+			{ "<leader>g", fzf.git_files },
 			{ "<C-p>", fzf.live_grep },
-      { "<leader>b", fzf.buffers },
 			{ "<leader>e", fzf.diagnostics_document },
 			{ "<leader>r", fzf.lsp_references },
 			{ "<leader>df", fzf.lsp_definitions },
