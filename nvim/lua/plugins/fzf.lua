@@ -13,6 +13,11 @@ return {
 		}
 	end,
 	opts = {
+		git = {
+			files = {
+				cmd = "git ls-files --exclude-standard --recurse-submodules=ignore",
+			},
+		},
 		winopts = {
 			preview = { scrollbar = false },
 		},
@@ -25,4 +30,3 @@ return {
 		vim.ui.select = fzf_ui.ui_select
 	end,
 }
-

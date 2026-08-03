@@ -1,5 +1,25 @@
 local vim = vim
 
+vim.g.lsp_enabled = true
+
+vim.keymap.set("n", "<leader>lt", function()
+	vim.g.lsp_enabled = not vim.g.lsp_enabled
+
+	if not vim.g.lsp_enabled then
+		for _, client in pairs(vim.lsp.get_clients()) do
+			client:stop(true)
+		end
+	end
+
+	print("LSP " .. (vim.g.lsp_enabled and "enabled" or "disabled"))
+end)
+
+local lsp_configs = {}
+
+for _, file in ipairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
+	table.insert(lsp_configs, dofile(file))
+end
+
 local function on_attach(client, bufnr)
 	local lsp_key = function(keymap, func, mode)
 		vim.keymap.set(mode or "n", keymap, func, { buffer = bufnr })
@@ -28,32 +48,40 @@ local function on_attach(client, bufnr)
 		end)
 	end
 
-	if client:supports_method("textDocument/documentColor") then
-		vim.lsp.document_color.enable(true, bufnr, { style = "virtual" })
+	if client:supports_method("textDocument/documentColor") and vim.lsp.document_color then
+		vim.lsp.document_color.enable(true, { bufnr = bufnr })
 		lsp_key("grc", vim.lsp.document_color.color_presentation)
 	end
 end
 
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
-	once = true,
 	callback = function()
+		if not vim.g.lsp_enabled then
+			return
+		end
+
+		local max_filesize = 200 * 1024
+		local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(0))
+		if ok and stats and stats.size > max_filesize then
+			return
+		end
+
 		local capabilities = require("blink.cmp").get_lsp_capabilities(nil, true)
 		local ft = vim.bo.filetype
 
-		for _, file in ipairs(vim.api.nvim_get_runtime_file("lsp/*.lua", true)) do
-			local config = dofile(file)
-
+		for _, config in ipairs(lsp_configs) do
 			if config.filetypes and vim.tbl_contains(config.filetypes, ft) then
 				if not config.root_dir then
 					config.root_dir = vim.loop.cwd()
 				end
 
-				local client_id = vim.lsp.start_client(vim.tbl_extend("force", config, {
-					on_attach = on_attach,
+				local client_id = vim.lsp.start(vim.tbl_extend("force", config, {
 					capabilities = capabilities,
 				}))
 
-				vim.lsp.buf_attach_client(0, client_id)
+				if client_id then
+					vim.lsp.buf_attach_client(0, client_id)
+				end
 			end
 		end
 	end,
@@ -72,7 +100,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.diagnostic.config({
 	virtual_text = true,
 	float = function()
-		return { focusable = false, style = "minimal", border = "rounded", source = "if_many", header = "", prefix = "" }
+		return {
+			focusable = false,
+			style = "minimal",
+			border = "rounded",
+			source = "if_many",
+			header = "",
+			prefix = "",
+			max_width = 80,
+			wrap = true,
+		}
 	end,
 })
-

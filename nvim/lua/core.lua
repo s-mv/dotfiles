@@ -7,12 +7,6 @@ vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<Tab>", ">>", { noremap = true, silent = true })
-vim.keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true })
-
-vim.keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true })
-vim.keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true })
-
 vim.keymap.set("n", "<A-Left>", ":tabprevious<CR>", { desc = "Tab: Left" })
 vim.keymap.set("n", "<A-Right>", ":tabnext<CR>", { desc = "Tab: Right" })
 
@@ -30,14 +24,15 @@ vim.keymap.set("n", "<C-f>", function()
 		async = false,
 		lsp_fallback = true,
 	})
-	local lines = vim.api.nvim_buf_get_lines(0, -2, -1, false)
-	if lines[1] ~= "" then
-		vim.api.nvim_buf_set_lines(0, -1, -1, false, { "" })
-	end
 end, { desc = "[F]ormat buffer" })
 
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename symbol" })
+vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, { desc = "Define symbol" })
+
+vim.keymap.set("n", "<C-/>", "gcc", { remap = true, desc = "Toggle comment" })
+vim.keymap.set("i", "<C-/>", "<Esc>gcc", { remap = true, desc = "Toggle comment" })
+vim.keymap.set("x", "<C-/>", "gc", { remap = true, desc = "Toggle comment selection" })
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -47,6 +42,7 @@ vim.opt.expandtab = true
 vim.opt.termguicolors = true
 vim.opt.cursorline = true
 
-vim.cmd("filetype plugin indent on")
+-- vim.cmd("filetype plugin indent on")
 vim.cmd("set smartindent")
 
+vim.opt.clipboard = "unnamedplus"

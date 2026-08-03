@@ -1,0 +1,9 @@
+set default-bg rgba(11,14,20,0.85)
+set page-cache-size 20
+set adjust-open "best-fit"
+map <C-r> recolor
+map o exec "zathura '$FILE'" 
+set recolor-lightcolor "rgba(0, 0, 0, 0)" 
+set recolor-darkcolor "rgba(255, 255, 255, 1)" 
+set selection-clipboard clipboard
+

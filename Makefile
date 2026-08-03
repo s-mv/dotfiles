@@ -1,4 +1,4 @@
-CONFIGS = waybar i3 polybar nvim alacritty picom rofi sway wallpapers
+CONFIGS = fusuma fuzzel waybar i3 polybar nvim alacritty picom rofi touchegg sway sioyek wallpapers zathura gdb
 FILES   = starship.toml libinput-gestures.conf
 
 smv:

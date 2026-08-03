@@ -1,48 +1,68 @@
-@define-color background #282A2E;
-@define-color background-alt #373B41;
-@define-color foreground #C5C8C6;
-@define-color primary #F0C674;
-@define-color secondary #8ABEB7;
-@define-color alert #A54242;
-@define-color disabled #707880;
+@define-color background      #282A2E;
+@define-color background-alt  #373B41;
+@define-color foreground      #C5C8C6;
+@define-color primary         #857C63;
+@define-color secondary       #8ABEB7;
+@define-color alert           #A54242;
+@define-color disabled        #707880;
 
 * {
   font-family: monospace;
   font-size: 12pt;
-  color: @foreground;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
 }
 
 window#waybar {
   background: @background;
-  border: none;
-  padding: 0;
+  color: @foreground;
+  border-top: 2px solid @primary;
+  transition: margin-bottom 0.2s ease, opacity 0.2s ease;
+}
+
+window#waybar.hidden {
+  margin-bottom: -26px;
+  opacity: 0;
 }
 
 #workspaces button {
   padding: 0 6px;
-  border: none;
+  background: transparent;
   color: @disabled;
 }
 
 #workspaces button.active {
+  background: @background-alt;
   color: @foreground;
   border-bottom: 2px solid @primary;
 }
 
 #workspaces button.urgent {
   background: @alert;
-  color: @background;
+  color: @foreground;
 }
 
-#battery.warning {
-  color: @alert;
-}
-
-#clock, #cpu, #memory, #pulseaudio, #network, #battery, #filesystem, #keyboard-state {
+#window {
   padding: 0 8px;
+}
+
+#filesystem,
+#pulseaudio,
+#memory,
+#cpu,
+#network,
+#battery,
+#clock,
+#keyboard-state {
+  padding: 0 6px;
 }
 
 #pulseaudio.muted {
   color: @disabled;
+}
+
+#battery.warning {
+  color: @alert;
 }
 

@@ -8,11 +8,10 @@ startup_mode = "Windowed"
 opacity = 0.85
 
 [font]
-size = 9
+size = 8
 
 [font.normal]
-family = "UbuntuMono Nerd Font"
+family = "Monaspace Argon NF"
 
 [selection]
 save_to_clipboard = true
-

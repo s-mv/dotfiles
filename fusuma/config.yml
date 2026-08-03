@@ -1,0 +1,12 @@
+swipe:
+  3:
+    left:
+      command: "swaymsg workspace prev"
+      once: true
+    right:
+      command: "swaymsg workspace next"
+      once: true
+
+threshold:
+  swipe: 0.8
+

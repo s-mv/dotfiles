@@ -8,11 +8,11 @@ font pango:UbuntuMono Nerd Font 9
 exec_always ~/.config/sway/randomwall.sh
 
 # polybar replaced by waybar
-exec_always killall -q waybar
-exec_always --no-startup-id waybar &
+# exec_always killall -q waybar
+# exec_always --no-startup-id waybar &
 
-# rofi replaced by wofi
-bindsym $mod+d exec wofi --show drun --matching fuzzy
+# rofi replaced by fuzzel
+bindsym $mod+d exec fuzzel
 
 # screen lock swaylock + swayidle
 exec swayidle -w \
@@ -23,6 +23,9 @@ exec swayidle -w \
 exec nm-applet
 exec blueman-applet
 exec mako
+
+# gestures
+exec_always fusuma
 
 # volume controls (using pipewire)
 bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 10%+ 
@@ -113,8 +116,8 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-bindsym $mod+Ctrl+Right workspace next
-bindsym $mod+Ctrl+Left workspace prev
+# bindsym $mod+Shift+Ctrl+Right exec ~/.config/sway/wsnext.sh
+# bindsym $mod+Shift+Ctrl+Left  exec ~/.config/sway/wsprev.sh
 
 # reload/restart
 bindsym $mod+Shift+c reload
@@ -144,7 +147,13 @@ mode "resize" {
     bindsym Escape mode "default"
     bindsym $mod+r mode "default"
 }
+
 bindsym $mod+r mode "resize"
+
+bindsym $mod+Ctrl+Right focus right
+bindsym $mod+Ctrl+Left  focus left
+bindsym $mod+Ctrl+Up    focus up
+bindsym $mod+Ctrl+Down  focus down
 
 # alt-tab focus
 bindsym Mod1+Tab focus right

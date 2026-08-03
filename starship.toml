@@ -8,8 +8,10 @@ palette = "shades"
 format = "$directory$character"
 right_format = "$git_branch"
 
+
 [character]
-success_symbol = "[❯](green)"
+success_symbol = "[δ](green)"
+error_symbol   = "[δ](red)"
 
 [git_branch]
 symbol = " "
