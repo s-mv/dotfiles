@@ -43,9 +43,7 @@ local function on_attach(client, bufnr)
 
 	if client:supports_method("textDocument/definition") then
 		lsp_key("gd", fzf.lsp_definitions)
-		lsp_key("gD", function()
-			fzf.lsp_definitions({ jump1 = false })
-		end)
+		lsp_key("gD", fzf.lsp_declarations)
 	end
 
 	if client:supports_method("textDocument/documentColor") and vim.lsp.document_color then
