@@ -3,4 +3,3 @@ require("core")
 require("session")
 require("config.lsp")
 require("themes.smv")
-

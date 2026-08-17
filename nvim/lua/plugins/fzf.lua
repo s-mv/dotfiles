@@ -13,12 +13,11 @@ return {
 		}
 	end,
 	opts = {
-		git = {
-			files = {
-				cmd = "git ls-files --exclude-standard --recurse-submodules=ignore",
-			},
-		},
-		winopts = {
+	git = {
+	files = {
+		cmd = "git ls-files --cached --others --exclude-standard",
+	},
+},		winopts = {
 			preview = { scrollbar = false },
 		},
 		fzf_opts = {

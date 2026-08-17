@@ -7,4 +7,3 @@ return {
 		".git",
 	}, { upward = true })[1]),
 }
-
