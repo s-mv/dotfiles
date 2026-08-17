@@ -1,10 +1,5 @@
 ---@module 'hl'
-hl.monitor({
-    output   = "",
-    mode     = "preferred",
-    position = "auto",
-    scale    = 1,
-})
+require("monitors")
 
 local terminal = "alacritty -o font.size=10"
 local fileManager = "pcmanfm"
@@ -20,78 +15,118 @@ hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 hl.bind("Print", hl.dsp.exec_cmd("flameshot gui"))
 
 hl.config({
-    general = {
-        gaps_in = 3,
-        gaps_out = 6,
-        border_size = 1,
-        resize_on_border = true,
-        allow_tearing = false,
-        layout = "dwindle",
-    },
+	general = {
+		gaps_in = 3,
+		gaps_out = 6,
+		border_size = 1,
+		resize_on_border = true,
+		allow_tearing = false,
+		layout = "dwindle",
+	},
 })
 
 hl.config({
-    decoration = {
-        rounding = 2,
-        rounding_power = 2,
-        active_opacity = 1.0,
-        inactive_opacity = 1.0,
-        shadow = {
-            enabled = true,
-            range = 4,
-            render_power = 3,
-            color = "rgba(1a1a1aee)",
-        },
-        blur = {
-            enabled = false,
-        },
-    },
+	decoration = {
+		rounding = 2,
+		rounding_power = 2,
+		active_opacity = 1.0,
+		inactive_opacity = 1.0,
+		shadow = {
+			enabled = true,
+			range = 4,
+			render_power = 3,
+			color = "rgba(1a1a1aee)",
+		},
+		blur = {
+			enabled = false,
+		},
+	},
 })
 
 hl.config({
-    animations = {
-        enabled = true,
-    },
+	animations = {
+		enabled = true,
+	},
 })
 
 hl.config({
-    dwindle = {
-        preserve_split = true,
-    },
+	dwindle = {
+		preserve_split = true,
+	},
 })
 
 hl.config({
-    master = {
-        new_status = "master",
-    },
+	master = {
+		new_status = "master",
+	},
 })
 
 local no_bg = os.getenv("NO_BG")
 
 hl.config({
-    misc = {
-        force_default_wallpaper = 0,
-        disable_hyprland_logo = true,
-        background_color = no_bg and "rgb(040108)"
-    }
+	misc = {
+		force_default_wallpaper = 0,
+		disable_hyprland_logo = true,
+		background_color = no_bg and "rgb(040108)",
+	},
 })
 
 hl.config({
-    input = {
-        kb_layout = "us",
-        follow_mouse = 1,
-        sensitivity = 0,
-        touchpad = {
-            natural_scroll = true,
-        },
-        gesture = { 3, "horizontal", "workspace" },
-    },
+	input = {
+		kb_layout = "us",
+		follow_mouse = 1,
+		sensitivity = 0,
+		touchpad = {
+			natural_scroll = true,
+		},
+	},
+})
+
+hl.gesture({
+	fingers = 3,
+	direction = "horizontal",
+	action = "workspace",
+})
+
+hl.gesture({
+	fingers = 3,
+	direction = "left",
+	mods = "SHIFT",
+	action = "move",
+})
+
+hl.gesture({
+	fingers = 3,
+	direction = "right",
+	mods = "SHIFT",
+	action = "move",
+})
+
+hl.gesture({
+	fingers = 3,
+	direction = "left",
+	mods = "CTRL",
+	action = function()
+		hl.dispatch(hl.dsp.window.move({ workspace = "e-1" }))
+	end,
+})
+
+hl.gesture({
+	fingers = 3,
+	direction = "right",
+	mods = "CTRL",
+	action = function()
+		hl.dispatch(hl.dsp.window.move({ workspace = "e+1" }))
+	end,
 })
 
 local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + " .. "Return", hl.dsp.exec_cmd("alacritty -o font.size=10"))
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Return", hl.dsp.exec_cmd("[float; move 1080 540; size 720 480] alacritty -o font.size=10"))
+hl.bind(
+	mainMod .. " + " .. "SHIFT" .. " + " .. "Return",
+	hl.dsp.exec_cmd("[float; move 1080 540; size 720 480] alacritty -o font.size=10")
+)
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "F", hl.dsp.exec_cmd("firefox"))
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "P", hl.dsp.exec_cmd("firefox --private-window"))
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "E", hl.dsp.exec_cmd("pcmanfm"))
@@ -131,10 +166,10 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "down", hl.dsp.focus({ direction
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "up", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "right", hl.dsp.focus({ direction = "right" }))
 
-hl.bind(mainMod .. " + CTRL + left",  hl.dsp.window.move({ direction = "left" }))
+hl.bind(mainMod .. " + CTRL + left", hl.dsp.window.move({ direction = "left" }))
 hl.bind(mainMod .. " + CTRL + right", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mainMod .. " + CTRL + up",    hl.dsp.window.move({ direction = "up" }))
-hl.bind(mainMod .. " + CTRL + down",  hl.dsp.window.move({ direction = "down" }))
+hl.bind(mainMod .. " + CTRL + up", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mainMod .. " + CTRL + down", hl.dsp.window.move({ direction = "down" }))
 
 hl.bind("SUPER" .. " + " .. "Tab", hl.dsp.window.cycle_next())
 
@@ -171,30 +206,30 @@ hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 9, hl.dsp.window.move({ workspac
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. 0, hl.dsp.window.move({ workspace = 10 }))
 
 hl.window_rule({
-    name  = "suppress-maximize",
-    match = {
-        class = ".*",
-    },
-    suppress_event = "maximize",
+	name = "suppress-maximize",
+	match = {
+		class = ".*",
+	},
+	suppress_event = "maximize",
 })
 
 hl.window_rule({
-    name  = "xwayland-drag-fix",
-    match = {
-        class = "^$",
-        title = "^$",
-        xwayland = true,
-        fullscreen = false,
-    },
-    no_initial_focus = true,
+	name = "xwayland-drag-fix",
+	match = {
+		class = "^$",
+		title = "^$",
+		xwayland = true,
+		fullscreen = false,
+	},
+	no_initial_focus = true,
 })
 
 hl.on("hyprland.start", function()
-    hl.exec_cmd("waybar")
-    hl.exec_cmd("nm-applet")
-    hl.exec_cmd("xss-lock -- i3lock")
-    if os.getenv("NO_BG") then
-    else
-      hl.exec_cmd("~/.config/sway/randomwall.sh")
-    end
+	hl.exec_cmd("waybar")
+	hl.exec_cmd("nm-applet")
+	hl.exec_cmd("xss-lock -- i3lock")
+	if os.getenv("NO_BG") then
+	else
+		hl.exec_cmd("~/.config/sway/randomwall.sh")
+	end
 end)

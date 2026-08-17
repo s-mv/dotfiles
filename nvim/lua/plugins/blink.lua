@@ -12,8 +12,14 @@ return {
 			["<C-n>"] = { "select_next", "fallback" },
 			["<C-b>"] = { "scroll_documentation_down" },
 			["<C-f>"] = { "scroll_documentation_up" },
-			["<Tab>"] = {},
-			["<S-Tab>"] = {},
+			["<Tab>"] = {
+				"snippet_forward",
+				"fallback",
+			},
+			["<S-Tab>"] = {
+				"snippet_backward",
+				"fallback",
+			},
 		},
 
 		completion = {
