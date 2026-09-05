@@ -28,7 +28,7 @@ return {
 			watch_gitdir = { follow_files = true },
 			auto_attach = true,
 			attach_to_untracked = false,
-			current_line_blame = false,
+			current_line_blame = true,
 			current_line_blame_opts = {
 				virt_text = true,
 				virt_text_pos = "eol",
@@ -51,4 +51,3 @@ return {
 		})
 	end,
 }
-

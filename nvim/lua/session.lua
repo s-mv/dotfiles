@@ -87,7 +87,6 @@ vim.api.nvim_create_autocmd("UIEnter", {
 				load_session()
 
 				vim.cmd("syntax enable")
-				vim.cmd("filetype detect")
 
 				require("themes.smv")
 			end)
