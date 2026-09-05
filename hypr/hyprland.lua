@@ -3,7 +3,9 @@ require("monitors")
 
 local terminal = "alacritty -o font.size=10"
 local fileManager = "pcmanfm"
-local menu = "fuzzel"
+local menu = "pkill rofi || rofi -show drun -show-icons"
+
+local mainMod = "SUPER"
 
 -- exec-once = ~/.config/waybar/hover.sh
 
@@ -58,6 +60,12 @@ hl.config({
 hl.config({
 	master = {
 		new_status = "master",
+	},
+})
+
+hl.config({
+	cursor = {
+		zoom_disable_aa = true,
 	},
 })
 
@@ -120,21 +128,28 @@ hl.gesture({
 	end,
 })
 
-local mainMod = "SUPER"
+hl.gesture({
+	fingers = 3,
+	mods = "CTRL",
+	direction = "pinch",
+	action = "cursorZoom",
+	zoom_level = 1,
+	mode = "live",
+})
 
-hl.bind(mainMod .. " + " .. "Return", hl.dsp.exec_cmd("alacritty -o font.size=10"))
+hl.bind(mainMod .. " + " .. "Return", hl.dsp.exec_cmd(terminal))
 hl.bind(
 	mainMod .. " + " .. "SHIFT" .. " + " .. "Return",
-	hl.dsp.exec_cmd("[float; move 1080 540; size 720 480] alacritty -o font.size=10")
+	hl.dsp.exec_cmd("[float; move 1080 540; size 720 480] " .. terminal)
 )
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "F", hl.dsp.exec_cmd("firefox"))
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "P", hl.dsp.exec_cmd("firefox --private-window"))
-hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "E", hl.dsp.exec_cmd("pcmanfm"))
+hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + " .. "M", hl.dsp.window.move({ workspace = "special:min" }))
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "M", hl.dsp.workspace.toggle_special("min"))
 hl.bind(mainMod .. " + " .. "SHIFT" .. " + " .. "space", hl.dsp.window.float())
-hl.bind(mainMod .. " + " .. "R", hl.dsp.exec_cmd("fuzzel"))
+hl.bind(mainMod .. " + " .. "SUPER_L", hl.dsp.exec_cmd(menu), { release = true })
 hl.bind(mainMod .. " + " .. "Escape", hl.dsp.exec_cmd("~/.config/hypr/powermenu.sh"))
 hl.bind(mainMod .. " + " .. "P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + " .. "J", hl.dsp.layout("togglesplit"))
@@ -228,6 +243,7 @@ hl.on("hyprland.start", function()
 	hl.exec_cmd("waybar")
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("xss-lock -- i3lock")
+	hl.exec_cmd("nwg-drawer -r")
 	if os.getenv("NO_BG") then
 	else
 		hl.exec_cmd("~/.config/sway/randomwall.sh")

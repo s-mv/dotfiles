@@ -6,15 +6,12 @@ return {
 
 		conform.setup({
 			formatters = {
-				pandoc_md = {
-					command = "pandoc",
-					args = {
-						"-f",
-						"gfm+yaml_metadata_block",
-						"-t",
-						"gfm+yaml_metadata_block",
-						"--standalone",
-						"--wrap=none",
+				prettier = {
+					prepend_args = {
+						"--print-width",
+						"80",
+						"--prose-wrap",
+						"always",
 					},
 					stdin = true,
 				},
